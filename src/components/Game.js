@@ -3,6 +3,7 @@ import { shuffleArray } from '../helpers';
 
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
+import LoadingScreen from './LoadingScreen';
 
 import '../styles/Game.css';
 
@@ -12,6 +13,7 @@ function Game() {
 	const [level, setLevel] = useState(1);
 	const [pokemons, setPokemons] = useState([]);
 	const [clickedIds, setClickedIds] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=10') // limit=905
@@ -35,6 +37,7 @@ function Game() {
 				}
 
 				setPokemons(shuffleArray(pokemonData));
+				setIsLoading(false);
 			})
 			.catch(err => {
 				console.log(err);
@@ -61,7 +64,9 @@ function Game() {
 	return (
 		<div className="game">
 			<Scoreboard score={score} bestScore={bestScore} level={level} />
-			<CardDisplay pokemons={pokemons} handleClick={updateGame} />
+			{(isLoading) ?
+				<LoadingScreen /> :
+				<CardDisplay pokemons={pokemons} handleClick={updateGame} />}
 		</div>
 	)
 }
