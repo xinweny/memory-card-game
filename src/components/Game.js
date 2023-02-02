@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { shuffleArray } from '../helpers';
 
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
@@ -8,20 +9,12 @@ import '../styles/Game.css';
 function Game() {
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
+	const [level, setLevel] = useState(1);
 	const [pokemons, setPokemons] = useState([]);
 	const [clickedIds, setClickedIds] = useState([]);
 
-	const shuffleArray = array => {
-		for (let i = array.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[array[i], array[j]] = [array[j], array[i]];
-		}
-
-		return array;
-	}
-
 	useEffect(() => {
-		fetch('https://pokeapi.co/api/v2/pokemon?limit=10') // limit=1008
+		fetch('https://pokeapi.co/api/v2/pokemon?limit=10') // limit=905
 			.then(response => response.json())
 			.then(async data => {
 				const pokemonData = [];
@@ -53,6 +46,10 @@ function Game() {
 			setClickedIds([...clickedIds, id]);
 			setScore(score + 1);
 			if (score > bestScore) setBestScore(score);
+
+			if (clickedIds.length === pokemons.length) {
+				setLevel(level + 1);
+			}
 		} else {
 			setClickedIds([]);
 			setScore(0);
@@ -63,7 +60,7 @@ function Game() {
 
 	return (
 		<div className="game">
-			<Scoreboard score={score} bestScore={bestScore} />
+			<Scoreboard score={score} bestScore={bestScore} level={level} />
 			<CardDisplay pokemons={pokemons} handleClick={updateGame} />
 		</div>
 	)
