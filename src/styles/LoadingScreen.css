@@ -1,0 +1,10 @@
+.loading-bar {
+	width: 250px;
+	border: 1px solid black;
+}
+
+.loading-progress {
+	height: 100%;
+	background-color: blue;
+	color: white;
+}

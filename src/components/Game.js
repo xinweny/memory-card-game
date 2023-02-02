@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
 	shuffleArray,
 	chooseRandomElements,
-	fetchPokemonData, } from '../helpers';
+} from '../helpers';
 
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
@@ -17,12 +17,38 @@ function Game() {
 	const [pokemons, setPokemons] = useState([]);
 	const [clickedIds, setClickedIds] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [loadingProgress, setLoadingProgress] = useState(0);
 
 	const allPokemon = useRef([]);
 	const initN = useRef(4);
 
 	useEffect(() => {
-		fetchPokemonData(10)
+		const pokemonData = [];
+		const limit = 10;
+
+		fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+			.then(response => response.json())
+			.then(async data => {
+				for (const d of data.results) {
+					const res = await fetch(d.url);
+					const pokemon = await res.json();
+			
+					const imgUrl = (pokemon.sprites.front_default) ? 
+						pokemon.sprites.front_default :
+						pokemon.sprites.other['official-artwork']['front_default'];
+			
+					pokemonData.push({
+						id: pokemon.id,
+						name: pokemon.name,
+						imgUrl,
+					});
+
+					const loadProgress = (pokemonData.length / data.results.length) * 100;
+					setLoadingProgress(loadProgress);
+				}
+			
+					return pokemonData;
+			})// limit=905
 			.then(data => {
 				allPokemon.current = data;
 
@@ -69,7 +95,7 @@ function Game() {
 		<div className="game">
 			<Scoreboard score={score} bestScore={bestScore} level={level} />
 			{(isLoading) ?
-				<LoadingScreen /> :
+				<LoadingScreen progress={loadingProgress}/> :
 				<CardDisplay
 					pokemons={pokemons}
 					handleClick={updateGame}

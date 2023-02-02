@@ -1,8 +1,17 @@
 import React from 'react';
 
-function LoadingScreen() {
+import '../styles/LoadingScreen.css';
+
+function LoadingScreen(props) {
 	return (
-		<div>Loading...</div>
+		<div className="loading-screen">
+			<p>Loading...</p>
+			<div className="loading-bar">
+				<div className="loading-progress" style={{ width: `${props.progress}%` }}>
+					{Math.round(props.progress)}%
+				</div>
+			</div>
+		</div>
 	);
 }
 

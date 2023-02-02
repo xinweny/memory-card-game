@@ -22,27 +22,3 @@ export const chooseRandomElements = (arr, num = 1) => {
 
 	return res;
 };
-
-export const fetchPokemonData = async limit => {
-	const pokemonData = [];
-
-	const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`) // limit=905
-	const data = await response.json();
-
-	for (const d of data.results) {
-		const res = await fetch(d.url);
-		const pokemon = await res.json();
-
-		const imgUrl = (pokemon.sprites.front_default) ? 
-			pokemon.sprites.front_default :
-			pokemon.sprites.other['official-artwork']['front_default'];
-
-		pokemonData.push({
-			id: pokemon.id,
-			name: pokemon.name,
-			imgUrl,
-		});
-	}
-
-		return pokemonData;
-	}
