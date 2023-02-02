@@ -2,7 +2,9 @@ import React from 'react';
 
 function Header() {
 	return (
-		<div></div>
+		<div>
+			<h1>PokéMemory</h1>
+		</div>
 	)
 }
 
