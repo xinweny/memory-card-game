@@ -5,3 +5,12 @@
 	padding: 12px;
 	gap: 8px;
 }
+
+.footer a {
+	color: blue;
+}
+
+.footer img {
+	width: 25px;
+	height: auto;
+}

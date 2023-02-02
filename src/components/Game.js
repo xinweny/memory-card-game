@@ -91,9 +91,9 @@ function Game() {
 	return (
 		<div className="game">
 			<Scoreboard
-			score={score} bestLevel={bestLevel}
-			level={level}
-			numCards={pokemons.length}
+			score={score}
+			level={level} bestLevel={bestLevel}
+			numCards={pokemons.length} initN={initN.current}
 			/>
 			{(isLoading) ?
 				<LoadingScreen progress={loadingProgress}/> :
