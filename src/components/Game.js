@@ -10,6 +10,15 @@ function Game() {
 	const [bestScore, setBestScore] = useState(0);
 	const [pokemons, setPokemons] = useState([]);
 
+	const shuffleArray = array => {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+
+		return array;
+	}
+
 	useEffect(() => {
 		fetch('https://pokeapi.co/api/v2/pokemon?limit=10') // limit=1008
 			.then(response => response.json())
@@ -32,7 +41,7 @@ function Game() {
 					});
 				}
 
-				setPokemons(pokemonData);
+				setPokemons(shuffleArray(pokemonData));
 			})
 			.catch(err => {
 				console.log(err);
