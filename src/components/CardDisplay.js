@@ -4,7 +4,9 @@ import Card from './Card';
 
 function CardDisplay() {
 	return (
-		<div></div>
+		<div>
+			
+		</div>
 	)
 }
 

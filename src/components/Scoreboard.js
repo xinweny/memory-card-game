@@ -1,8 +1,11 @@
 import React from 'react';
 
-function Scoreboard() {
+function Scoreboard(props) {
 	return (
-		<div></div>
+		<div>
+			<p>Score: {props.score}</p>
+			<p>Best: {props.bestScore}</p>
+		</div>
 	)
 }
 
