@@ -21,12 +21,12 @@ function Game() {
 
 	const allPokemon = useRef([]);
 	const initN = useRef(4);
+	const limit = useRef(10);
 
 	useEffect(() => {
 		const pokemonData = [];
-		const limit = 10;
 
-		fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+		fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit.current}`)
 			.then(response => response.json())
 			.then(async data => {
 				for (const d of data.results) {
@@ -93,7 +93,12 @@ function Game() {
 
 	return (
 		<div className="game">
-			<Scoreboard score={score} bestScore={bestScore} level={level} />
+			<Scoreboard
+			score={score} bestScore={bestScore}
+			level={level}
+			numCards={pokemons.length}
+			limit={limit.current}
+			/>
 			{(isLoading) ?
 				<LoadingScreen progress={loadingProgress}/> :
 				<CardDisplay
