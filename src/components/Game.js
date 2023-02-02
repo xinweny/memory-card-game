@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
 
+import '../styles/Game.css';
+
 function Game() {
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
@@ -18,10 +20,14 @@ function Game() {
 					const res = await fetch(d.url);
 					const pokemon = await res.json();
 
+					const imgUrl = (pokemon.sprites.front_default) ? 
+						pokemon.sprites.front_default :
+						pokemon.sprites.other['official-artwork']['front_default'];
+
 					pokemonData.push({
 						id: pokemon.id,
 						name: pokemon.name,
-						imgUrl: pokemon.sprites.other['official-artwork']['front_default'],
+						imgUrl,
 						isClicked: false,
 					});
 				}
@@ -34,7 +40,7 @@ function Game() {
 	}, []);
 
 	return (
-		<div>
+		<div className="game">
 			<Scoreboard score={score} bestScore={bestScore} />
 			<CardDisplay pokemons={pokemons} />
 		</div>

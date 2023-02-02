@@ -1,12 +1,14 @@
 import React from 'react';
 
+import '../styles/Card.css';
+
 function Card(props) {
 	const { name, imgUrl } = props.pokemon;
 
 	return (
-		<div>
+		<div className="card">
 			<img src={imgUrl} alt={name} />
-			<p>{name}</p>
+			<p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
 		</div>
 	)
 }
