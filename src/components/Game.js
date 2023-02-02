@@ -9,6 +9,7 @@ function Game() {
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
 	const [pokemons, setPokemons] = useState([]);
+	const [clickedIds, setClickedIds] = useState([]);
 
 	const shuffleArray = array => {
 		for (let i = array.length - 1; i > 0; i--) {
@@ -37,7 +38,6 @@ function Game() {
 						id: pokemon.id,
 						name: pokemon.name,
 						imgUrl,
-						isClicked: false,
 					});
 				}
 
@@ -48,10 +48,23 @@ function Game() {
 			})
 	}, []);
 
+	const updateGame = id => {
+		if (!clickedIds.includes(id)) {
+			setClickedIds([...clickedIds, id]);
+			setScore(score + 1);
+			if (score > bestScore) setBestScore(score);
+		} else {
+			setClickedIds([]);
+			setScore(0);
+		}
+
+		setPokemons(shuffleArray([...pokemons]));
+	}
+
 	return (
 		<div className="game">
 			<Scoreboard score={score} bestScore={bestScore} />
-			<CardDisplay pokemons={pokemons} />
+			<CardDisplay pokemons={pokemons} handleClick={updateGame} />
 		</div>
 	)
 }

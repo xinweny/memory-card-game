@@ -8,7 +8,10 @@ function CardDisplay(props) {
 	return (
 		<div className="card-display">
 			{props.pokemons.map(pokemon => 
-				<Card key={pokemon.id} pokemon={pokemon} />
+				<Card
+				key={pokemon.id} pokemon={pokemon}
+				handleClick={() => props.handleClick(pokemon.id)}
+				/>
 			)}
 		</div>
 	)
