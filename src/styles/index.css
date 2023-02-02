@@ -3,6 +3,16 @@
 	padding: 0;
 }
 
+@font-face {
+	font-family: 'PokemonClassic';
+	src: url('../assets/pokemon_classic.woff') format('woff'),
+			 url('../assets/pokemon_classic.woff2') format('woff2');
+}
+
 a {
 	text-decoration: none;
+}
+
+body {
+	font-family: 'PokemonClassic';
 }
