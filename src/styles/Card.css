@@ -3,7 +3,9 @@
 	flex-direction: column;
 	align-items: center;
 	border: 1px solid black;
-	padding: 12px;
+	padding: 16px;
+	background-color: rgba(255, 255, 255, 0.5);
+	font-size: 12px;
 }
 
 .card img {
@@ -13,4 +15,5 @@
 
 .card:hover {
 	cursor: pointer;
+	background-color: rgba(255, 255, 255, 1);
 }

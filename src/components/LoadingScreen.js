@@ -5,10 +5,12 @@ import '../styles/LoadingScreen.css';
 function LoadingScreen(props) {
 	return (
 		<div className="loading-screen">
-			<p>Loading...</p>
 			<div className="loading-bar">
-				<div className="loading-progress" style={{ width: `${props.progress}%` }}>
-					{Math.round(props.progress)}%
+				<p>Loading...</p>
+				<div className="bar">
+					<div className="progress" style={{ width: `${props.progress}%` }}>
+						<p>{Math.round(props.progress)}%</p>
+					</div>
 				</div>
 			</div>
 		</div>
