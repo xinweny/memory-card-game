@@ -10,3 +10,7 @@
 .card p {
 	text-align: center;
 }
+
+.card:hover {
+	cursor: pointer;
+}

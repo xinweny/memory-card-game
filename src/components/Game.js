@@ -12,8 +12,8 @@ import '../styles/Game.css';
 
 function Game() {
 	const [score, setScore] = useState(0);
-	const [bestScore, setBestScore] = useState(0);
 	const [level, setLevel] = useState(1);
+	const [bestLevel, setBestLevel] = useState(1);
 	const [pokemons, setPokemons] = useState([]);
 	const [clickedIds, setClickedIds] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -74,16 +74,13 @@ function Game() {
 			chooseRandomElements(allPokemon.current, initN.current + ((level - 1) * 2))
 		);
 		setClickedIds([]);
+		if (level > bestLevel) setBestLevel(level);
 	}, [level])
 
 	const updateGame = id => {
 		if (!clickedIds.includes(id)) {
 			setClickedIds(prevIds => [...prevIds, id]);
-			setScore(prevScore => {
-				const newScore = prevScore + 1;
-				if (newScore > bestScore) setBestScore(newScore);
-				return newScore;
-			});
+			setScore(prevScore => prevScore + 1);
 		} else {
 			setClickedIds([]);
 			setScore(0);
@@ -94,10 +91,9 @@ function Game() {
 	return (
 		<div className="game">
 			<Scoreboard
-			score={score} bestScore={bestScore}
+			score={score} bestLevel={bestLevel}
 			level={level}
 			numCards={pokemons.length}
-			limit={limit.current}
 			/>
 			{(isLoading) ?
 				<LoadingScreen progress={loadingProgress}/> :
