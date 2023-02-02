@@ -21,7 +21,7 @@ function Game() {
 
 	const allPokemon = useRef([]);
 	const initN = useRef(4);
-	const limit = useRef(10);
+	const limit = useRef(905); // limit 905
 
 	useEffect(() => {
 		const pokemonData = [];
@@ -85,6 +85,9 @@ function Game() {
 			setClickedIds([]);
 			setScore(0);
 			setLevel(1);
+			setPokemons(
+				chooseRandomElements(allPokemon.current, initN.current)
+			);
 		}
 	}
 
