@@ -1,9 +1,13 @@
 import React from 'react';
 
+function Card(props) {
+	const { name, imgUrl } = props.pokemon;
 
-function Card() {
 	return (
-		<div></div>
+		<div>
+			<img src={imgUrl} alt={name} />
+			<p>{name}</p>
+		</div>
 	)
 }
 
