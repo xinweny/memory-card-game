@@ -11,7 +11,7 @@ function Card(props) {
 	fName = fName.charAt(0).toUpperCase() + fName.slice(1)
 
 	return (
-		<div className="card" onClick={props.handleClick}>
+		<div className="card pokemon-border" onClick={props.handleClick}>
 			<img src={props.url} alt={props.name} />
 			<p>{fName}</p>
 		</div>

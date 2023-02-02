@@ -2,3 +2,20 @@
 	text-align: center;
 	padding: 16px 0px;
 }
+
+.heading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.left {
+	-webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.embellishment img {
+	width: 25px;
+	height: auto;
+}

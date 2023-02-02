@@ -2,3 +2,14 @@
 	display: grid;
 	grid-template-rows: auto 1fr;
 }
+
+.pokemon-border {
+	border-radius: 2px;
+  line-height: 16px;
+  background: white;
+  border: 1px solid white;
+  box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
+}
