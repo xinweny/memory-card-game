@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { shuffleArray } from '../helpers';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+	shuffleArray,
+	chooseRandomElements,
+	fetchPokemonData, } from '../helpers';
 
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
@@ -15,50 +18,51 @@ function Game() {
 	const [clickedIds, setClickedIds] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
+	const allPokemon = useRef([]);
+	const initN = useRef(4);
+
 	useEffect(() => {
-		fetch('https://pokeapi.co/api/v2/pokemon?limit=10') // limit=905
-			.then(response => response.json())
-			.then(async data => {
-				const pokemonData = [];
+		fetchPokemonData(10)
+			.then(data => {
+				allPokemon.current = data;
 
-				for (const d of data.results) {
-					const res = await fetch(d.url);
-					const pokemon = await res.json();
-
-					const imgUrl = (pokemon.sprites.front_default) ? 
-						pokemon.sprites.front_default :
-						pokemon.sprites.other['official-artwork']['front_default'];
-
-					pokemonData.push({
-						id: pokemon.id,
-						name: pokemon.name,
-						imgUrl,
-					});
-				}
-
-				setPokemons(shuffleArray(pokemonData));
 				setIsLoading(false);
-			})
-			.catch(err => {
-				console.log(err);
-			})
+				setPokemons(
+					chooseRandomElements(allPokemon.current, initN.current)
+				);
+			});
 	}, []);
+
+	useEffect(() => {
+		if (clickedIds.length !== 0 && pokemons.length === clickedIds.length) {
+			setLevel(prevLevel => prevLevel + 1);
+			setClickedIds([]);
+			setScore(0);
+		} else {
+			setPokemons(pokemons => shuffleArray([...pokemons]));
+		}
+	}, [clickedIds]);
+
+	useEffect(() => {
+		setPokemons(
+			chooseRandomElements(allPokemon.current, initN.current + ((level - 1) * 2))
+		);
+		setClickedIds([]);
+	}, [level])
 
 	const updateGame = id => {
 		if (!clickedIds.includes(id)) {
-			setClickedIds([...clickedIds, id]);
-			setScore(score + 1);
-			if (score > bestScore) setBestScore(score);
-
-			if (clickedIds.length === pokemons.length) {
-				setLevel(level + 1);
-			}
+			setClickedIds(prevIds => [...prevIds, id]);
+			setScore(prevScore => {
+				const newScore = prevScore + 1;
+				if (newScore > bestScore) setBestScore(newScore);
+				return newScore;
+			});
 		} else {
 			setClickedIds([]);
 			setScore(0);
+			setLevel(1);
 		}
-
-		setPokemons(shuffleArray([...pokemons]));
 	}
 
 	return (
@@ -66,7 +70,11 @@ function Game() {
 			<Scoreboard score={score} bestScore={bestScore} level={level} />
 			{(isLoading) ?
 				<LoadingScreen /> :
-				<CardDisplay pokemons={pokemons} handleClick={updateGame} />}
+				<CardDisplay
+					pokemons={pokemons}
+					handleClick={updateGame}
+				/>
+			}
 		</div>
 	)
 }
