@@ -10,7 +10,6 @@ function LoadingScreen(props) {
 			setLoadMsg(prevMsg => {
 				const numDots = prevMsg.split('.').length - 1;
 
-				console.log(numDots);
 				return (numDots === 3) ? 'Loading' : prevMsg + '.';
 			});
 		}, 500);
