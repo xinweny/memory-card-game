@@ -6,7 +6,7 @@ Click each card only ONCE per level to progress, otherwise game over!
 Live demo [here](https://xinweny.github.io/memory-card-game) 👈🏻
 
 ## Features
-- All Gen I to VII Pokémon with classic sprites
+- All Gen I to V Pokémon with classic sprites
 - Animated loading screen
 - Best level tracking
 
