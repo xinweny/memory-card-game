@@ -21,7 +21,7 @@ function Game() {
 
 	const allPokemon = useRef([]);
 	const initN = useRef(4);
-	const limit = useRef(905); // limit 905
+	const limit = useRef(649);
 
 	useEffect(() => {
 		const pokemonData = [];
