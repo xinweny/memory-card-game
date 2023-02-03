@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/memory-card-game/static/css/main.7d5f917d.css",
-    "main.js": "/memory-card-game/static/js/main.23a2b73e.js",
+    "main.js": "/memory-card-game/static/js/main.a78c5e97.js",
     "static/media/background.png": "/memory-card-game/static/media/background.5409d81d99f21fd3914b.png",
     "static/media/pokemon_classic.woff": "/memory-card-game/static/media/pokemon_classic.65bf4e1609815aaefe39.woff",
     "static/media/pokemon_classic.woff2": "/memory-card-game/static/media/pokemon_classic.6baa0b53ed4345f40e97.woff2",
     "index.html": "/memory-card-game/index.html",
     "main.7d5f917d.css.map": "/memory-card-game/static/css/main.7d5f917d.css.map",
-    "main.23a2b73e.js.map": "/memory-card-game/static/js/main.23a2b73e.js.map"
+    "main.a78c5e97.js.map": "/memory-card-game/static/js/main.a78c5e97.js.map"
   },
   "entrypoints": [
     "static/css/main.7d5f917d.css",
-    "static/js/main.23a2b73e.js"
+    "static/js/main.a78c5e97.js"
   ]
 }
