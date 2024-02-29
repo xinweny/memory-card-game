@@ -111,11 +111,7 @@ function Game() {
 	const updateGame = id => {
 		if (clickedIds.includes(id)) {
 			if (!isMuted) new Audio(wallBumpSound).play();
-			setClickedIds([]);
-			setScore(0);
-			setLevel(1);
-			setPokemons([]);
-			setGeneration(0);
+			restartGame();
 		} else if (pokemons.length === [...clickedIds, id].length) {
 			new Audio(levelUpSound).play();
 			setLevel(prevLevel => prevLevel + 1);
@@ -129,7 +125,15 @@ function Game() {
 		}
 	};
 
-	const toggleSound = () => { setIsMuted(prev => !prev); }
+	const toggleSound = () => { setIsMuted(prev => !prev); };
+
+	const restartGame = () => {
+		setClickedIds([]);
+		setScore(0);
+		setLevel(1);
+		setPokemons([]);
+		setGeneration(0);
+	};
 
 	return (
 		<div className="game">
@@ -141,6 +145,7 @@ function Game() {
 				initN={initN.current}
 				isMuted={isMuted}
 				toggleSound={toggleSound}
+				restartGame={restartGame}
 			/>
 			{pokemons.length === 0
 				? <div className="screen">
