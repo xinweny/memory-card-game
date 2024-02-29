@@ -26,6 +26,7 @@ function Game() {
 	const [pokemons, setPokemons] = useState([]);
 	const [clickedIds, setClickedIds] = useState([]);
 	const [loadingProgress, setLoadingProgress] = useState(0);
+	const [isMuted, setIsMuted] = useState(false);
 
 	const initN = useRef(3);
 
@@ -103,13 +104,13 @@ function Game() {
 	}, [level, allPokemon]);
 
 	const startGame = i => {
-		new Audio(aButtonSound).play();
+		if (!isMuted) new Audio(aButtonSound).play();
 		setGeneration(i + 1);
 	};
 
 	const updateGame = id => {
 		if (clickedIds.includes(id)) {
-			new Audio(wallBumpSound).play();
+			if (!isMuted) new Audio(wallBumpSound).play();
 			setClickedIds([]);
 			setScore(0);
 			setLevel(1);
@@ -121,12 +122,14 @@ function Game() {
 			setClickedIds([]);
 			setScore(0);
 		} else {
-			new Audio(aButtonSound).play();
+			if (!isMuted) new Audio(aButtonSound).play();
 			setClickedIds(prevIds => [...prevIds, id]);
 			setScore(prevScore => prevScore + 1);
 			setPokemons(pokemons => shuffleArray([...pokemons]));
 		}
 	};
+
+	const toggleSound = () => { setIsMuted(prev => !prev); }
 
 	return (
 		<div className="game">
@@ -136,6 +139,8 @@ function Game() {
 				bestLevel={bestLevel}
 				numCards={pokemons.length}
 				initN={initN.current}
+				isMuted={isMuted}
+				toggleSound={toggleSound}
 			/>
 			{pokemons.length === 0
 				? <div className="screen">
