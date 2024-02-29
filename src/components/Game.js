@@ -12,7 +12,9 @@ import LoadingScreen from './LoadingScreen';
 
 import '../styles/Game.css';
 
-import levelUpSrc from '../assets/level_up.m4a';
+import aButtonSound from '../assets/a_button.mp3';
+import levelUpSound from '../assets/level_up.mp3';
+import wallBumpSound from '../assets/wall_bump.mp3';
 
 const API_URL = 'https://pokeapi.co/api/v2';
 
@@ -26,8 +28,6 @@ function Game() {
 	const [loadingProgress, setLoadingProgress] = useState(0);
 
 	const initN = useRef(3);
-
-	const levelUpSound = new Audio(levelUpSrc);
 
 	const { data: generations } = useQuery({
 		queryKey: ['generation', generation],
@@ -87,36 +87,32 @@ function Game() {
 	}, [allPokemon]);
 
 	useEffect(() => {
-		if (clickedIds.length !== 0 && pokemons.length === clickedIds.length) {
-			levelUpSound.play();
-			setLevel(prevLevel => prevLevel + 1);
-			setClickedIds([]);
-			setScore(0);
-		} else {
-			setPokemons(pokemons => shuffleArray([...pokemons]));
-		}
-	}, [clickedIds]);
-
-	useEffect(() => {
 		if (!allPokemon) return;
 
 		setPokemons(chooseRandomElements(allPokemon, initN.current + (level - 1)));
 		setClickedIds([]);
 
 		if (level > bestLevel) setBestLevel(level);
-
 	}, [level, allPokemon]);
 
 	const updateGame = id => {
-		if (!clickedIds.includes(id)) {
-			setClickedIds(prevIds => [...prevIds, id]);
-			setScore(prevScore => prevScore + 1);
-		} else {
+		if (clickedIds.includes(id)) {
+			new Audio(wallBumpSound).play();
 			setClickedIds([]);
 			setScore(0);
 			setLevel(1);
 			setPokemons([]);
 			setGeneration(0);
+		} else if (pokemons.length === [...clickedIds, id].length) {
+			new Audio(levelUpSound).play();
+			setLevel(prevLevel => prevLevel + 1);
+			setClickedIds([]);
+			setScore(0);
+		} else {
+			new Audio(aButtonSound).play();
+			setClickedIds(prevIds => [...prevIds, id]);
+			setScore(prevScore => prevScore + 1);
+			setPokemons(pokemons => shuffleArray([...pokemons]));
 		}
 	};
 
