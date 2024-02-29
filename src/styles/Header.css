@@ -19,3 +19,9 @@
 	width: 25px;
 	height: auto;
 }
+
+@media (max-width: 768px) {
+  .heading h1 {
+		font-size: 28px;
+	}
+}

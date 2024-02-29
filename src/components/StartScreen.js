@@ -2,13 +2,13 @@ import React from 'react';
 
 import '../styles/StartScreen.css';
 
-function StartScreen({ generations, setGeneration }) {
+function StartScreen({ generations, startGame }) {
 	return (
 		<div className="start-modal pokemon-border">
       <div>
         <h3>INSTRUCTIONS</h3>
         <span>
-          <span>Select each Pokémon only ONCE per level.</span>
+          <span>Select each Pokémon ONCE per level.</span>
           <br />
           <span><span className="text-positive">LEVEL UP</span> when you select all Pokémon for that level.</span>
           <br />
@@ -16,10 +16,10 @@ function StartScreen({ generations, setGeneration }) {
         </span>
       </div>
       <div>
-        <h2>SELECT GEN</h2>
+        <h3>SELECT GEN</h3>
         <div className="gen-buttons">
           {generations && generations.map((gen, i) => (
-            <button key={gen} onClick={() => { setGeneration(i + 1); }}>
+            <button key={gen} onClick={() => { startGame(i); }}>
               {gen}
             </button>
           ))}

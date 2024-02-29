@@ -102,6 +102,11 @@ function Game() {
 		if (level > bestLevel) setBestLevel(level);
 	}, [level, allPokemon]);
 
+	const startGame = i => {
+		new Audio(aButtonSound).play();
+		setGeneration(i + 1);
+	};
+
 	const updateGame = id => {
 		if (clickedIds.includes(id)) {
 			new Audio(wallBumpSound).play();
@@ -137,14 +142,14 @@ function Game() {
 					{generation === 0
 						?	<StartScreen
 							generations={generations}
-							setGeneration={setGeneration}
+							startGame={startGame}
 						/>
 						: <LoadingScreen progress={loadingProgress} />
 					}
 				</div>
 				: <CardDisplay
 					pokemons={pokemons}
-					handleClick={updateGame}
+					updateGame={updateGame}
 				/>
 			}
 		</div>
