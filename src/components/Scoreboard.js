@@ -27,10 +27,7 @@ function Scoreboard({
 			</div>
 			<i></i>
 			<div className="options">
-				<button onClick={() => {
-					if (!isMuted) new Audio(aButtonSound).play();
-					toggleSound();
-				}}>
+				<button onClick={() => { toggleSound(); }}>
 					<img src={isMuted ? speakerMutedSrc : speakerUnmutedSrc} />
 				</button>
 				<button onClick={() => {
