@@ -4,14 +4,14 @@ import Card from './Card';
 
 import '../styles/CardDisplay.css';
 
-function CardDisplay(props) {
+function CardDisplay({ pokemons, handleClick }) {
 	return (
 		<div className="card-display">
 			<div className="cards">
-			{props.pokemons.map(pokemon => 
+			{pokemons.map(pokemon => 
 				<Card
-				key={pokemon.id} name={pokemon.name} url={pokemon.imgUrl}
-				handleClick={() => props.handleClick(pokemon.id)}
+					key={pokemon.id} name={pokemon.name} url={pokemon.imgUrl}
+					handleClick={() => { handleClick(pokemon.id); }}
 				/>
 			)}
 			</div>

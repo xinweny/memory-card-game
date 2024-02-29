@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../styles/LoadingScreen.css';
 
-function LoadingScreen(props) {
+function LoadingScreen({ progress }) {
 	const [loadMsg, setLoadMsg] = useState('Loading...');
 
 	useEffect(() => {
@@ -20,10 +20,10 @@ function LoadingScreen(props) {
 	return (
 		<div className="loading-screen">
 			<div className="loading-bar">
-				<p>{loadMsg}</p>
+				<span>{loadMsg}</span>
 				<div className="bar">
-					<div className="progress" style={{ width: `${props.progress}%` }}>
-						<p>{Math.round(props.progress)}%</p>
+					<div className="progress" style={{ width: `${progress}%` }}>
+						<span>{Math.round(progress)}%</span>
 					</div>
 				</div>
 			</div>

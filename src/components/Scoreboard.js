@@ -2,13 +2,13 @@ import React from 'react';
 
 import '../styles/Scoreboard.css';
 
-function Scoreboard(props) {
+function Scoreboard({ level, score, numCards, initN, bestLevel }) {
 	return (
 		<div className="scoreboard pokemon-border">
 			<div className="game-info">
-				<span className="level">{`Lv. ${props.level}`}</span>
-				<span className="score">{`Score: ${props.score} / ${props.numCards < props.initN ? props.initN : props.numCards}`}</span>
-				<span className="best-level">{`Best: ${props.bestLevel}`}</span>
+				<span className="level">{`Lv. ${level}`}</span>
+				<span className="score">{`Score: ${score} / ${numCards < initN ? initN : numCards}`}</span>
+				<span className="best-level">{`Best: ${bestLevel}`}</span>
 			</div>
 			<i></i>
 		</div>
