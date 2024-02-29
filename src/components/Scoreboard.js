@@ -6,9 +6,9 @@ function Scoreboard(props) {
 	return (
 		<div className="scoreboard pokemon-border">
 			<div className="game-info">
-				<p className="level">Lv. {props.level}</p>
-				<p className="score">Score: {props.score} / {props.numCards < props.initN ? props.initN : props.numCards}</p>
-				<p className="best-level">Best: {props.bestLevel}</p>
+				<span className="level">{`Lv. ${props.level}`}</span>
+				<span className="score">{`Score: ${props.score} / ${props.numCards < props.initN ? props.initN : props.numCards}`}</span>
+				<span className="best-level">{`Best: ${props.bestLevel}`}</span>
 			</div>
 			<i></i>
 		</div>

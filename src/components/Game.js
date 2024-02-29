@@ -71,7 +71,7 @@ function Game() {
 
 	useEffect(() => {
 		setPokemons(
-			chooseRandomElements(allPokemon.current, initN.current + ((level - 1) * 2))
+			chooseRandomElements(allPokemon.current, initN.current + (level - 1))
 		);
 		setClickedIds([]);
 		if (level > bestLevel) setBestLevel(level);
@@ -94,13 +94,13 @@ function Game() {
 	return (
 		<div className="game">
 			<Scoreboard
-			score={score}
-			level={level} bestLevel={bestLevel}
-			numCards={pokemons.length} initN={initN.current}
+				score={score}
+				level={level} bestLevel={bestLevel}
+				numCards={pokemons.length} initN={initN.current}
 			/>
-			{(isLoading) ?
-				<LoadingScreen progress={loadingProgress}/> :
-				<CardDisplay
+			{isLoading
+				? <LoadingScreen progress={loadingProgress}/>
+				: <CardDisplay
 					pokemons={pokemons}
 					handleClick={updateGame}
 				/>
