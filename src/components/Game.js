@@ -82,14 +82,21 @@ function Game() {
 
 	useEffect(() => {
 		if (!allPokemon) return;
-
-		setPokemons(chooseRandomElements(allPokemon, initN.current));
 	}, [allPokemon]);
 
 	useEffect(() => {
 		if (!allPokemon) return;
 
-		setPokemons(chooseRandomElements(allPokemon, initN.current + (level - 1)));
+		if (level === 1) {
+			setPokemons(chooseRandomElements(allPokemon, initN.current));
+		} else {
+			const remaining = allPokemon.filter(pokemon => !(pokemons.map(p => p.id).includes(pokemon.id)));
+
+			const nextPokemon = remaining[Math.floor(Math.random() * remaining.length)];
+
+			setPokemons(prev => [...prev, nextPokemon]);
+		}
+
 		setClickedIds([]);
 
 		if (level > bestLevel) setBestLevel(level);
