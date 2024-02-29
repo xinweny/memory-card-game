@@ -4,3 +4,21 @@
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 }
+
+.pokemon-border {
+	border-radius: 2px;
+  line-height: 16px;
+  border: 1px solid white;
+  box-shadow: 0 1px 0 1px black,
+    inset 0 1px 0 1px black,
+    0 0 0 1px black,
+    inset 0 0 0 1px black;
+}
+
+.text-positive {
+	color: green;
+}
+
+.text-danger {
+	color: red;
+}
