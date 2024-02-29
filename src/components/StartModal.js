@@ -10,7 +10,7 @@ function StartModal({ generations, setGeneration }) {
       <div>
         <h2>SELECT GEN</h2>
         <div>
-          {generations.map((gen, i) => (
+          {generations && generations.map((gen, i) => (
             <button key={gen} onClick={() => { setGeneration(i + 1); }}>
               {gen}
             </button>
