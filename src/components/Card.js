@@ -7,8 +7,7 @@ function Card({ handleClick, name, url }) {
 		return () => window.removeEventListener('click', handleClick);
 	});
 
-	let fName = name.split('-')[0];
-	fName = fName.charAt(0).toUpperCase() + fName.slice(1)
+	const fName = name.split('-').map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ');
 
 	return (
 		<div className="card pokemon-border" onClick={handleClick}>

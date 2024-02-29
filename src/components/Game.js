@@ -12,6 +12,8 @@ import LoadingScreen from './LoadingScreen';
 
 import '../styles/Game.css';
 
+import levelUpSrc from '../assets/level_up.m4a';
+
 const API_URL = 'https://pokeapi.co/api/v2';
 
 function Game() {
@@ -24,6 +26,8 @@ function Game() {
 	const [loadingProgress, setLoadingProgress] = useState(0);
 
 	const initN = useRef(3);
+
+	const levelUpSound = new Audio(levelUpSrc);
 
 	const { data: generations } = useQuery({
 		queryKey: ['generation', generation],
@@ -61,7 +65,7 @@ function Game() {
 
 						return {
 							id: pokemon.id,
-							name: pokemon.name,
+							name: pokemon.species.name,
 							imgUrl,
 						};
 					})
@@ -84,6 +88,7 @@ function Game() {
 
 	useEffect(() => {
 		if (clickedIds.length !== 0 && pokemons.length === clickedIds.length) {
+			levelUpSound.play();
 			setLevel(prevLevel => prevLevel + 1);
 			setClickedIds([]);
 			setScore(0);
