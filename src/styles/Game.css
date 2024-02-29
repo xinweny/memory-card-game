@@ -3,6 +3,17 @@
 	grid-template-rows: auto 1fr;
 }
 
+.screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen > div {
+  width: 50%;
+  background-color: white;
+}
+
 .pokemon-border {
 	border-radius: 2px;
   line-height: 16px;

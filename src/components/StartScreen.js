@@ -1,8 +1,10 @@
 import React from 'react';
 
-function StartModal({ generations, setGeneration }) {
+import '../styles/StartScreen.css';
+
+function StartScreen({ generations, setGeneration }) {
 	return (
-		<div className="start-modal">
+		<div className="start-modal pokemon-border">
       <div>
         <h1>INSTRUCTIONS</h1>
         <span>Select each Pokémon only ONCE per level. You will progress to the next level when all Pokémon have been selected once each. If you pick a Pokémon you already selected for that level, GAME OVER.</span>
@@ -21,4 +23,4 @@ function StartModal({ generations, setGeneration }) {
 	);
 }
 
-export default StartModal;
+export default StartScreen;
