@@ -6,9 +6,6 @@ Click each card only ONCE per level to progress, otherwise game over!
 Live demo [here](https://xinweny.github.io/memory-card-game) 👈🏻
 
 ## Features
-- All Gen I to V Pokémon with classic sprites
-- Animated loading screen
-- Best level tracking
-
-## Learning objectives
-- Using useState and useEffect React Hooks
+- Select your favourite Pokémon generation to play with
+- Responsive retro gaming design
+- Nostalgic Pokémon sound effects
