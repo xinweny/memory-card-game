@@ -5,7 +5,7 @@ import {
 	chooseRandomElements,
 } from '../helpers';
 
-import StartModal from './StartModal';
+import StartScreen from './StartScreen';
 import Scoreboard from './Scoreboard';
 import CardDisplay from './CardDisplay';
 import LoadingScreen from './LoadingScreen';
@@ -110,33 +110,35 @@ function Game() {
 			setClickedIds([]);
 			setScore(0);
 			setLevel(1);
+			setPokemons([]);
 			setGeneration(0);
 		}
 	};
 
 	return (
 		<div className="game">
-			{generation === 0
-				?	<StartModal
-						generations={generations}
-						setGeneration={setGeneration}
-					/>
-				: <>
-					<Scoreboard
-						score={score}
-						level={level}
-						bestLevel={bestLevel}
-						numCards={pokemons.length}
-						initN={initN.current}
-					/>
-					{pokemons.length === 0
-						? <LoadingScreen progress={loadingProgress} />
-						: <CardDisplay
-							pokemons={pokemons}
-							handleClick={updateGame}
+			<Scoreboard
+				score={score}
+				level={level}
+				bestLevel={bestLevel}
+				numCards={pokemons.length}
+				initN={initN.current}
+			/>
+			{pokemons.length === 0
+				? <div className="screen">
+					{generation === 0
+						?	<StartScreen
+							generations={generations}
+							setGeneration={setGeneration}
 						/>
+						: <LoadingScreen progress={loadingProgress} />
 					}
-				</>}
+				</div>
+				: <CardDisplay
+					pokemons={pokemons}
+					handleClick={updateGame}
+				/>
+			}
 		</div>
 	)
 }

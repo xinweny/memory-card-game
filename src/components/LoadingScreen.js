@@ -18,13 +18,11 @@ function LoadingScreen({ progress }) {
 	}, []);
 
 	return (
-		<div className="loading-screen">
-			<div className="loading-bar">
-				<span>{loadMsg}</span>
-				<div className="bar">
-					<div className="progress" style={{ width: `${progress}%` }}>
-						<span>{Math.round(progress)}%</span>
-					</div>
+		<div className="loading-bar">
+			<span>{loadMsg}</span>
+			<div className="bar">
+				<div className="progress" style={{ width: `${progress}%` }}>
+					<span>{Math.round(progress)}%</span>
 				</div>
 			</div>
 		</div>
