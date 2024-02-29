@@ -32,7 +32,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 8px;
+	gap: 16px;
 }
 
 .options > button {
@@ -41,7 +41,7 @@
 }
 
 .options > button > img {
-	width: 24px;
+	width: auto;
 	height: 24px;
 }
 

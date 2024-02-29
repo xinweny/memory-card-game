@@ -113,7 +113,7 @@ function Game() {
 			if (!isMuted) new Audio(wallBumpSound).play();
 			restartGame();
 		} else if (pokemons.length === [...clickedIds, id].length) {
-			new Audio(levelUpSound).play();
+			if (!isMuted) new Audio(levelUpSound).play();
 			setLevel(prevLevel => prevLevel + 1);
 			setClickedIds([]);
 			setScore(0);

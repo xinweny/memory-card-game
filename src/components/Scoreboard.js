@@ -2,9 +2,11 @@ import React from 'react';
 
 import '../styles/Scoreboard.css';
 
+import aButtonSound from '../assets/a_button.mp3';
+
 import speakerMutedSrc from '../assets/speaker_muted.png';
 import speakerUnmutedSrc from '../assets/speaker_unmuted.png';
-import restartButtonSrc from '../assets/restart_button.png';
+import resetButtonSrc from '../assets/reset_button.png';
 
 function Scoreboard({
 	level,
@@ -25,11 +27,17 @@ function Scoreboard({
 			</div>
 			<i></i>
 			<div className="options">
-				<button onClick={toggleSound}>
+				<button onClick={() => {
+					if (!isMuted) new Audio(aButtonSound).play();
+					toggleSound();
+				}}>
 					<img src={isMuted ? speakerMutedSrc : speakerUnmutedSrc} />
 				</button>
-				<button onClick={restartGame}>
-					<img src={restartButtonSrc} />
+				<button onClick={() => {
+					if (!isMuted) new Audio(aButtonSound).play();
+					restartGame();
+				}}>
+					<img src={resetButtonSrc} />
 				</button>
 			</div>
 		</div>
