@@ -10,10 +10,10 @@ function Card({ handleClick, name, url }) {
 	const fName = name.split('-').map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ');
 
 	return (
-		<div className="card pokemon-border" onClick={() => {
+		<div className="card" onClick={() => {
 			handleClick();
 		}}>
-			<img src={url} alt={name} />
+			<img className="pokemon-border" src={url} alt={name} />
 			<span>{fName}</span>
 		</div>
 	)

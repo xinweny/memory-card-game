@@ -1,6 +1,13 @@
 .game {
-	display: grid;
-	grid-template-rows: auto 1fr;
+	display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 48px;
+  width: 100vw;
+}
+
+.game > div:last-child {
+  flex-grow: 1;
 }
 
 .screen {
@@ -11,4 +18,10 @@
 
 .screen > div {
   width: 50%;
+}
+
+@media (max-width: 480px) {
+  .game {
+    gap: 32px;
+  }
 }

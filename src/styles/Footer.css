@@ -2,7 +2,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 12px;
 	gap: 8px;
 }
 
@@ -11,6 +10,16 @@
 }
 
 .footer img {
-	width: 25px;
+	width: 24px;
 	height: auto;
+}
+
+@media (max-width: 480px) {
+	.footer {
+		font-size: 12px;
+	}
+
+	.footer img {
+		width: 16px;
+	}
 }

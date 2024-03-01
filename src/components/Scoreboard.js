@@ -21,8 +21,8 @@ function Scoreboard({
 	return (
 		<div className="scoreboard pokemon-border">
 			<div className="game-info">
-				<span className="level">{`Lv. ${level}`}</span>
-				<span className="score">{`Score: ${score} / ${numCards < initN ? initN : numCards}`}</span>
+				<span className="level">{`Lv${level}`}</span>
+				<span className="score">{`Score: ${score}/${numCards < initN ? initN : numCards}`}</span>
 				<span className="best-level">{`Best: ${bestLevel}`}</span>
 			</div>
 			<i></i>

@@ -6,7 +6,7 @@ function StartScreen({ generations, startGame }) {
 	return (
 		<div className="start-modal pokemon-border">
       <div>
-        <h3>INSTRUCTIONS</h3>
+        <h3>HOW TO PLAY</h3>
         <span>
           <span>Select each Pokémon ONCE per level.</span>
           <br />

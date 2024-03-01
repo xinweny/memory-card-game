@@ -45,11 +45,31 @@
 	height: 24px;
 }
 
+.score {
+	margin: 0px 8px;
+}
+
 @keyframes bounce {
   from { 
 		margin-top: 20px;
 	}
   to {
 		margin-top: 23px;
+	}
+}
+
+@media (max-width: 480px) {
+	.scoreboard {
+		font-size: 12px;
+	}
+
+	.options {
+		bottom: -28px;
+		gap: 8px;
+	}
+
+	.options > button > img {
+		width: auto;
+		height: 16px;
 	}
 }

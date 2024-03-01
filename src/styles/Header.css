@@ -1,6 +1,5 @@
 .header {
 	text-align: center;
-	padding: 16px 0px;
 }
 
 .heading {
@@ -15,13 +14,23 @@
   transform: scaleX(-1);
 }
 
-.embellishment img {
-	width: 25px;
-	height: auto;
-}
-
 @media (max-width: 768px) {
   .heading h1 {
 		font-size: 28px;
+	}
+}
+
+@media (max-width: 480px) {
+	.heading h1 {
+		font-size: 20px;
+	}
+
+	.heading > img {
+		width: 60px;
+		height: auto;
+	}
+
+	.right {
+		display: none;
 	}
 }
