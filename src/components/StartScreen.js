@@ -8,11 +8,9 @@ function StartScreen({ generations, startGame }) {
       <div>
         <h3>HOW TO PLAY</h3>
         <span>
-          <span>Select each Pokémon ONCE per level.</span>
+          <span><span className="text-positive">LEVEL UP</span> when you select every Pokémon ONCE.</span>
           <br />
-          <span><span className="text-positive">LEVEL UP</span> when you select all Pokémon for that level.</span>
-          <br />
-          <span><span className="text-danger">GAME OVER</span> when you select a Pokémon twice for that level.</span>
+          <span><span className="text-danger">GAME OVER</span> when you select any Pokémon more than once.</span>
         </span>
       </div>
       <div>
