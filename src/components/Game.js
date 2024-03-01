@@ -30,6 +30,10 @@ function Game() {
 
 	const initN = useRef(3);
 
+	useEffect(() => {
+		setLoadingProgress(0);
+	}, [generation]);
+
 	const { data: generations } = useQuery({
 		queryKey: ['generation', generation],
 		queryFn: () => fetch(`${API_URL}/generation`)
@@ -53,7 +57,6 @@ function Game() {
 		queryKey: ['pokemons', generation],
 		queryFn: () => fetch(range ? `${API_URL}/pokemon?limit=${range[1]}&offset=${range[0]}` : '')
 			.then(response => {
-				setLoadingProgress(0);
 				return response.json();
 			})
 			.then(async data => {
